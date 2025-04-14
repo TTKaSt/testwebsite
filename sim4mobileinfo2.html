@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客戶基本資料</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 18px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 0px;
+            font-size: 14px;
+            color: black;
+        
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .merged {
+            text-align: center;
+            vertical-align: middle;
+            font-weight: bold;
+            font-size: 14px;
+            color: black;
+        }
+        .customer-info {
+            background-color: rgb(107, 168, 77);
+        }
+        .device-info {
+            background-color: rgb(202, 223, 240);
+            border: 1px solid black;
+        }
+        .contract-info {
+            background-color: rgb(255, 209, 173);
+            border: 1px solid black;
+        }
+        .value-added-info {
+            background-color: rgb(255, 249, 215);
+            border: 1px solid black;
+        }
+        .billing-info {
+            background-color: rgb(184, 232, 156);
+            border: 1px solid black;
+        }
+        .header {
+            background-color: #80b64a;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: black;
+            height: 16px;
+            border: 1px solid black;
+        }
+        .backcolor {
+            background-color: #f28b7f;
+            text-align: center;
+            border: 1.5px solid black; /* 設置表格邊框為黑色 */
+        }
+        .promotion-table {
+            display: none; /* 隱藏優惠方案詳細表格 */
+    
+        }
+        .promotion-plan-name {
+            width: 100px; /* 設置促銷計劃名稱列的寬度 */
+            background-color: #f28b7f;
+            text-align: center;
+            border: 1.5px solid black; /* 設置表格邊框為黑色 */
+        }
+        .promotion-plan-name1 {
+            background-color: #f5c9c4;
+            text-align: left;
+            border: 1.5px solid black; /* 設置表格邊框為黑色 */
+        }
+        .promotion-plan-name2 {
+            background-color: #f5c9c4;
+            text-align: center;
+            border: 1.5px solid black; /* 設置表格邊框為黑色 */
+        }
+        .needpay {
+            text-align: right;  
+            border: 1.5px solid black; /* 設置表格邊框為黑色 */
+            color: rgb(210, 25, 25);
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td class="header" colspan="6">客戶基本資料列表</td>
+        </tr>
+        <tr>
+            <td class="merged device-info" rowspan="6">設備資訊</td>
+            <td>客戶號碼：0919123456</td>
+            <td>使用狀況：使用中</td>
+            <td colspan="3">所屬機構：(288)</td>
+        </tr>
+        <tr>
+            <td>服務種類：4G語_數(語音_數據)</td>
+            <td>客戶名稱：陳**</td>
+            <td colspan="3">客戶證號：A*********</td>
+        </tr>
+        <tr>
+            <td>申裝類別：免保證金</td>
+            <td>生日：770307</td>
+            <td colspan="3">報稅統編：</td>
+        </tr>
+        <tr>
+            <td>客戶等級：一般客戶</td>
+            <td>代表人名稱：</td>
+            <td colspan="3">代表人證號：</td>
+        </tr>
+        <tr>
+            <td>限異資訊：無</td>
+            <td>起租日：104/5/31</td>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <td>信號涵蓋查詢</td>
+            <td>SIM卡：4LU18CT814015</td>
+            <td colspan="3">PUK1：80499773 PUK2：80499773</td>
+        </tr>
+        <tr>
+            <td class="merged contract-info" rowspan="3">合約資訊</td>
+            <td>費率：4G 399型(本月) 4G 399型(下月)</td>
+            <td>可否購機：Y</td>
+            <td colspan="3"><a href="sim4recordindex2.html" target="_blank">近半年歷史用量</a></td>
+        </tr>
+        <tr>
+            <td>保證金：0</td>
+            <td colspan="4">購機優惠：無購機綁約，可優惠購機，實際購機需同時符合新選購機優惠方案之可受理條件。</td>
+        </tr>
+    
+        <tr>
+            <td colspan="5" style="border-bottom: black; color:blue;cursor: pointer;" onclick="togglePromotionDetails()" >+優惠方案</td>
+        </tr>
+        <tr class="promotion-table">
+            <td class="promotion-plan-name" colspan="2" style="border-top: 1.5px solid black;">促銷計劃名稱（優惠方案名稱）</td>
+            <td class="backcolor" style="border-top: 1.5px solid black;">商品名稱</td>
+            <td class="backcolor" style="border-top: 1.5px solid black;">起始日期</td>
+            <td class="backcolor" style="border-top: 1.5px solid black;">預計期滿日</td>
+            <td class="backcolor" style="border-top: 1.5px solid black;">提前解約</td>
+        </tr>
+        <tr class="promotion-table">
+            <td class="promotion-plan-name1" colspan="2">月繳398元購機優惠(24)</td>
+            <td class="promotion-plan-name1">個證-398購機(24)</td>
+            <td class="promotion-plan-name2">113/2/22</td>
+            <td class="promotion-plan-name2">115/2/21</td>
+            <td class="promotion-plan-name2">1738</td>
+        </tr>
+        <tr class="promotion-table">
+            <td class="promotion-plan-name1" colspan="2">月繳398元購機優惠(24)</td>
+            <td class="promotion-plan-name1">租期網內通話免費</td>
+            <td class="promotion-plan-name2">113/2/22</td>
+            <td class="promotion-plan-name2">115/2/21</td>
+            <td class="promotion-plan-name2">0</td>
+        </tr>
+        <tr class="promotion-table">
+            <td class="promotion-plan-name1" colspan="2">月繳398元購機優惠(24)</td>
+            <td class="promotion-plan-name1">贈送網外免費通話5分鐘</td>
+            <td class="promotion-plan-name2">113/2/22</td>
+            <td class="promotion-plan-name2">115/2/21</td>
+            <td class="promotion-plan-name2">0</td>
+        </tr>
+        <tr class="promotion-table">
+            <td class="promotion-plan-name1" colspan="2">月繳398元購機優惠(24)</td>
+            <td class="promotion-plan-name1">贈送行動上網量5844MB/月</td>
+            <td class="promotion-plan-name2">113/2/22</td>
+            <td class="promotion-plan-name2">115/2/21</td>
+            <td class="promotion-plan-name2">0</td>
+        </tr>
+        <tr class="promotion-table">
+            <td class="promotion-plan-name1" colspan="2">月繳398元購機優惠(24)</td>
+            <td class="promotion-plan-name1">月租費優惠1元/月</td>
+            <td class="promotion-plan-name2">113/2/22</td>
+            <td class="promotion-plan-name2">115/2/21</td>
+            <td class="promotion-plan-name2">0</td>
+        </tr>
+        <tr class="promotion-table">
+            <td class="promotion-plan-name1" colspan="2">月繳398元購機優惠(24)</td>
+            <td class="promotion-plan-name1">贈送網內簡訊50則/月</td>
+            <td class="promotion-plan-name2">113/2/22</td>
+            <td class="promotion-plan-name2">115/2/21</td>
+            <td class="promotion-plan-name2">0</td>
+        </tr>
+        <tr class="promotion-table">
+            <td class="promotion-plan-name1" colspan="2">月繳398元購機優惠(24)</td>
+            <td class="promotion-plan-name1">[店長籌碼]購機加碼折價500元</td>
+            <td class="promotion-plan-name2">113/2/22</td>
+            <td class="promotion-plan-name2">115/2/21</td>
+            <td class="promotion-plan-name2">136</td>
+        </tr>
+        <tr class="promotion-table">
+            <td class="promotion-plan-name1" colspan="2">月繳398元購機優惠(24)</td>
+            <td class="promotion-plan-name1">[機不可失]購機折價200元</td>
+            <td class="promotion-plan-name2">113/2/22</td>
+            <td class="promotion-plan-name2">115/2/21</td>
+            <td class="promotion-plan-name2">93</td>
+        </tr>
+        <tr class="promotion-table">
+            <td class="needpay" colspan="5">違約金總金額：</td>
+            <td class="promotion-plan-name2">1967</td>
+        </tr>
+        <tr>
+            <td class="merged value-added-info" rowspan="2">加值資訊</td>
+            <td colspan="5">特別業務：限撥0204,emome APN,EMOME網站註冊,多方</td>
+        </tr>
+        <tr>
+            <td colspan="5">付費網頁：童書夢工廠</td>
+        </tr>
+        <tr>
+            <td class="merged billing-info" rowspan="5">帳務資訊</td>
+            <td colspan="5">帳單地址：新北市板橋區民族路168號</td>
+        </tr>
+        <tr>
+            <td colspan="5">戶籍地址：新北市中和區中華路二段55號</td>
+        </tr>
+        <tr>
+            <td>Email：</td>
+            <td>帳單類別：紙本帳單</td>
+            <td colspan="3">計費週期：1</td>
+        </tr>
+        <tr>
+            <td>轉帳代繳帳號：</td>
+            <td>合併帳戶帳號：</td>
+            <td colspan="3">合併帳單地址：新北市板橋區民族路168號</td>
+        </tr>
+        <tr>
+            <td><a href="sim4recordindex2.html" target="_blank">帳單分析</td></a>
+            <td>包月/限索閱明細：有包月明細,無限制索閱</td>
+            <td colspan="3">提醒繳費聯絡電話：</td>
+        </tr>
+    </table>
+    <button onclick="goToNextPage('page1')" style="width: 80px;font-size: 14px;font-weight: blod; margin: 5px 0px 0px 700px; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">回上一步</button>
+    <button onclick="goToNextPage('page2')" style="width: 50px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">新裝</button>
+    <button onclick="goToNextPage('page3')" style="width: 50px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">異動</button>
+    <button onclick="goToNextPage('page4')" style="width: 80px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">查核備註</button>
+    <button onclick="goToNextPage('page5')" style="width: 100px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">個資回覆單</button>
+    <button onclick="goToNextPage('page6')" style="width: 140px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">關閉客戶資料列表</button>
+<script>
+        function togglePromotionDetails() {
+        // 找到所有 class 為 "promotion-table" 的元素
+        var promotionRows = document.querySelectorAll('.promotion-table');
+        
+        // 遍歷所有優惠方案詳細資訊行，切換顯示或隱藏
+        promotionRows.forEach(function(row) {
+            if (row.style.display === 'none' || row.style.display === '') {
+                row.style.display = 'table-row'; // 顯示行
+            } else {
+                row.style.display = 'none'; // 隱藏行
+            }
+        });
+    }
+        // goToNextPage 函數根據傳遞的參數決定跳轉的頁面
+        function goToNextPage(page) {
+            // 根據不同的參數跳轉到不同的頁面
+            switch (page) {
+                case 'page1':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page2':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page3':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page4':
+                   alert('本次測驗無功能');
+                    break;   
+                case 'page5':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page6':
+                   alert('本次測驗無功能');
+                    break; 
+                default:
+                    alert('無效的頁面');
+            }
+        }
+        function togglePromotionDetails() {
+        // 找到所有 class 為 "promotion-table" 的元素
+        var promotionRows = document.querySelectorAll('.promotion-table');
+        
+        // 遍歷所有優惠方案詳細資訊行，切換顯示或隱藏
+        promotionRows.forEach(function(row) {
+            if (row.style.display === 'none' || row.style.display === '') {
+                row.style.display = 'table-row'; // 顯示行
+            } else {
+                row.style.display = 'none'; // 隱藏行
+            }
+        });
+    }
+</script>
+</body>
+</html>

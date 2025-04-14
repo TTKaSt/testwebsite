@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>usehistory</title>
+  <style>
+    /* 確保頁面佈局能夠正常顯示 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: darkgray;
+      font-family: Arial, sans-serif;	
+    }
+    iframe {
+	    border: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column; /* 上下排列 */
+      height: 100vh; /* 佔滿整個視窗高度 */
+    }
+
+    .top-box {
+      color: white;
+      text-align: center;
+      height: 8%;
+    }
+
+    .bottom-box {
+      display: flex;
+      height: 92%;/*框架佔據 86% 的高度 */
+    }
+
+    .left-box {
+      background-color: white;
+      color: white;
+      width: 20%; /* 左側框架佔 30% 寬度 */
+      text-align: left;
+    }
+
+    .right-box {
+      background-color: #ffffff;
+      color: white;
+      width: 80%; /* 右側框架佔 70% 寬度 */
+      padding: 0px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <iframe class="top-box" id="top-box" name="top-box" src="sim2recordtop.html"></iframe>
+    <div class="bottom-box">
+    <iframe style="margin-top: -20px; border:2px solid darkgray; " class="left-box" id="left-box" name="left-box" src="sim2recordleft.html"></iframe>
+    <iframe style="margin-top: -20px;" class="right-box" id="right-box" name="right-box" src="sim2recordbottom.html"></iframe>
+     
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帳單分析</title>
+    <style>
+        table {
+            width: 100%;
+            border:1.5px solid darkgray;
+        
+        }
+        th, td {
+            border:2px solid rgb(167, 167, 167);
+            padding: 0px;
+            text-align: center;
+        }
+        .header {
+            background-color: #fb4261;
+            font-weight: bold;
+            font-size:16px;
+            border-collapse: collapse;
+        }
+        .headerer {
+            background-color: #ee8798;
+            font-weight: bold;
+            font-size: 16px;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <table style="border-collapse: collapse;">
+        <thead>
+            <tr class="header">
+                <th colspan="9">帳單分析</th>
+            </tr>
+            <tr class="headerer">
+                <th colspan="9">證號：&nbsp;<input type="text" placeholder='AXXXXXXXXXX' style="width:100px;">&nbsp;&nbsp;設備：&nbsp;<input type="text" placeholder='0988345678' style="width:100px;">&nbsp;&nbsp;<button>查詢</button>               </th>
+            </tr>
+        </table>
+</body>
+</html>
