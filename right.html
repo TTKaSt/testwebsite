@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+	        background-color: #ffffff;
+        }
+        .menu-buttons {
+            margin-bottom: 10px;
+	        text-align: center;
+        }
+	.menu-buttons1 {
+            margin-bottom: 10px;
+	        text-align: left;
+        }
+        .menu-buttons button {
+            margin-right: 5px;
+            padding: 5px 10px;
+            background-color: #F0F0F0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+ 	.button-container {
+            flex-direction: row; /* 水平排列 */
+            gap: 10px; /* 按鈕之間的間距 */
+	        text-align: center;
+            margin-top:5px;
+        }
+        .menu-buttons button:hover {
+            background-color: #e0e0e0;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border:1px solid #ccc;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 3px;
+            text-align: left;
+        }
+        th {
+            background-color: #f9f9f9;
+        }
+        .color-yellow{
+            background-color: rgb(245, 245, 190);
+            width: 120px;
+            height: 40px;
+            border-width: 1px;
+            border-color: rgb(178, 178, 180);
+            
+        }
+        .color-blue{
+            background-color: rgb(192, 248, 255);
+            width: 120px;
+            height: 40px;
+            border-width: 1px;
+            border-color: rgb(178, 178, 180);
+        }
+        .color-pink{
+            background-color: rgb(252, 220, 220);
+            width: 120px;
+            height: 40px;
+            margin-top:20px;
+            border-width: 1px;
+            border-color: rgb(178, 178, 180);
+        }
+        .color-pinkk{
+            background-color: rgb(252, 220, 220);
+            width: 200px;
+            height: 40px;
+            margin-top:20px;
+            border-width: 1px;
+            border-color: rgb(178, 178, 180);
+        }
+        
+    </style>
+</head>
+<body>
+<div class="button-container">
+        <!-- 每個按鈕都會呼叫 goToNextPage 函數並傳遞不同的參數 -->
+        <button class="color-yellow" onclick="goToNextPage('page1')">MBMS</button>
+        <button class="color-yellow" onclick="goToNextPage('page2')">fORDER</button>
+        <button class="color-yellow" onclick="goToNextPage('page3')">CCBS</button>
+        <button class="color-blue" onclick="goToNextPage('page4')">KM大平台</button>
+        <button class="color-blue" onclick="goToNextPage('page5')">公版表格</button>
+    </div>
+<div class="button-container">
+        <!-- 每個按鈕都會呼叫 goToNextPage 函數並傳遞不同的參數 -->
+        <button class="color-pink" onclick="goToNextPage('page6')">手機查找</button>
+        <button class="color-pinkk" onclick="goToNextPage('page7')">庫存查詢(含神腦特約)</button>
+        <button class="color-pink" onclick="goToNextPage('page8')">供裝距離查詢</button>
+    </div>
+	 <script>
+        // goToNextPage 函數根據傳遞的參數決定跳轉的頁面
+        function goToNextPage(page) {
+            // 根據不同的參數跳轉到不同的頁面
+            switch (page) {
+                case 'page1':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page2':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page3':
+                  alert('本次測驗無功能');
+                    break;
+                case 'page4':
+                    window.open('https://kmip.cht.com.tw/');
+                    break;
+                case 'page5':
+                    alert('本次測驗無功能');
+                    break;
+                case 'page6':
+                    parent.frames['right-box'].location.href = 'comarison.html';
+                    break;
+                case 'page7':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page8':
+                    window.open('https://web.leamis.cht.com.tw/eLeamis/jsp/leamis/adsl/adsllength.jsp');
+		            break;
+                default:
+                    alert('無效的頁面');
+            }
+        }
+    </script>
+
+    <table style="margin-top:30px;">
+        <tr>
+            <th style="height: 70px;color:rgb(68, 68, 250);background-color: #e1f1f3;">每日晨會</th>
+            <td style="background-color: #e1f1f3;vertical-align: top;">
+                <a href="#">[11130530已上傳] 手機暨3C異動-Android活動-預付卡-行動4G固定制IP-HiNet-MOD-帳務-中華電信VIP-來電答鈴-簡訊-系統維護-原廠教材.pdf</a><td style="width: 100px;background-color: #e1f1f3;"></td>
+            </td>
+        </tr>
+        <tr>
+            <th style="text-align: left;color:rgb(68, 68, 250);background-color: #66b8fc;">系統公告</th>
+            <td style="color:rgb(0, 0, 252);background-color: #66b8fc;">
+                <p style="color:rgb(0, 0, 252);">1：11/5/29全區開放：新增由SPIP左選單直穿FORDFR系統受理功能</br>
+                2：客戶基本資料頁面新增【查詢手機是否支援VoLTE功能】</br>
+                3：SPIP首頁之[CIS] 快速連結按鈕，自 (113/5/13)起改為【KM大平台】</p><td style="width: 100px;background-color: #66b8fc;"></td>
+            </td>
+        </tr>
+        <tr>
+            <th style="text-align: left;color:rgb(68, 68, 250);background-color: #e1f1f3;">意見回饋</th>
+            <td colspan="2" style="background-color: #e1f1f3;">🔑</td>
+        </tr>
+        <tr>
+            <th style="text-align: left;color:rgb(68, 68, 250);background-color: #66b8fc;">常用功能搜尋</th>
+            <td colspan="2" style="background-color: #66b8fc;">🔍</td>
+        </tr>
+        <tr>
+            <th style="text-align: left;color:rgb(68, 68, 250);background-color: #e1f1f3;">聯絡我們</th>
+            <td colspan="2" style="background-color: #e1f1f3;">
+                <p style="color:blue;">04-23446792 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp SPIP系統新版帳務功能相關：04-24871559</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品比較網站</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        .filter-container { display: flex; gap: 10px; margin-bottom: 20px; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .filter-item { display: flex; flex-direction: column; } /* ← 加這行讓 label 在上面 */
+        select { padding: 8px; border: 1px solid #ddd;width:250px; }
+        .product-list { display: flex; gap: 10px; flex-wrap: wrap; }
+        .product-card { background: white; border: 1px solid #ddd; padding: 10px; border-radius: 8px; text-align: center; width: 200px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: relative; }
+        .product-card img { width: 100%; border-radius: 8px; }
+        .remove-btn { background: red; color: white; border: none; cursor: pointer; position: absolute; top: 5px; right: 5px; border-radius: 50%; width: 25px; height: 25px; }
+        .buttons { margin-top: 20px; display: flex; gap: 10px; justify-content: center;}
+        .compare-btn, .clear-btn { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        .compare-btn { background: #4285F4; color: white; }
+        .clear-btn { background: #F4B400; color: white; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        .required::before {
+        content: '* ';
+        color: red;
+        
+    }
+    .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.comparison-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* 偶數列底色 */
+}
+
+.comparison-table tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* 奇數列底色 */
+}
+
+.comparison-table thead {
+    background-color: #e0e0e0;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <div class="filter-container">
+        <div class="filter-item">
+            <label class="required" for="deviceType">終端類型</label>
+            <select id="deviceType" style="margin-top: 10px;">
+                <option value="">行動電話</option>
+            </select>
+        </div>
+    
+        <div class="filter-item">
+            <label class="required" for="brandFilter">廠牌</label>
+            <select id="brandFilter" onchange="updateModelOptions()" style="margin-top: 10px;">
+                <option value="">請選擇</option>
+                <option value="Apple">Apple</option>
+                <option value="ASUS">ASUS</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Sony">Sony</option>
+                <option value="vivo">vivo</option>
+                <option value="OPPO">OPPO</option>
+            </select>
+        </div>
+    
+        <div class="filter-item">
+            <label for="capacityFilter">容量</label>
+            <select id="capacityFilter" style="margin-top: 10px;">
+                <option value="">全部</option>
+            </select>
+        </div>
+    
+        <div class="filter-item">
+            <label for="colorFilter">顏色</label>
+            <select id="colorFilter" style="margin-top: 10px;">
+                <option value="">全部</option>
+            </select>
+        </div>
+    
+        <div class="filter-item">
+            <label class="required" for="modelFilter">型號</label>
+            <select id="modelFilter" style="margin-top: 10px;">
+                <option value="">請選擇</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="product-list" id="productList"></div>
+    
+    <div class="buttons">
+        <button class="compare-btn" onclick="generateComparisonTable()">比較去</button>
+        <button class="clear-btn" onclick="clearAll()">清除機型</button>
+    </div>
+
+    <div id="comparisonTableContainer"></div> <!-- 比較表格顯示區域 -->
+
+    <script>
+        const products = [
+            { name: "iPhone 16 Plus", brand: "Apple",screenSize: "6.7吋",batterysize:"內建充電式鋰離子電池",frontcamara:"1200原深感測相機", capacity: "128GB",maincamara:"4800 Fusion 相機+1200超廣角+1200望遠",cpu:"A18+16 核心神經網路引擎",RAM:"依Apple官網", color: "黑色", price: 32900, date: "2024-09-20", img: "iphone16.jpg" },
+            { name: "iPhone 16 Pro", brand: "Apple",screenSize: "6.3吋",batterysize:"內建充電式鋰離子電池",frontcamara:"1200原深感測相機", capacity: "128GB",maincamara:"4800 Fusion 相機+1200超廣角+1200望遠",cpu:"A18 Pro+16 核心神經網路引擎",RAM:"依Apple官網", color: "黑色", price: 36900, date: "2024-09-20", img: "16 plus.jpg" },
+            { name: "iPhone 16 ProMax", brand: "Apple",screenSize: "6.9吋",batterysize:"內建充電式鋰離子電池",frontcamara:"1200原深感測相機", capacity: "256GB",maincamara:"4800 Fusion 相機+1200超廣角+1200望遠",cpu:"A18 Pro+16 核心神經網路引擎",RAM:"依Apple官網", color: "黑色", price: 44900, date: "2024-09-20", img: "16 pro.jpg" },
+            { name: "iPhone 16", brand: "Apple", capacity: "128GB",screenSize: "6.1吋",batterysize:"內建充電式鋰離子電池",frontcamara:"1200原深感測相機",maincamara:"4800 Fusion 相機+1200超廣角+1200望遠",cpu:"A18+16 核心神經網路引擎",RAM:"依Apple官網", color: "黑色", price: 29900, date: "2024-09-20", img: "16 pro max.jpg" },
+            { name: "pixel 9", brand: "Google", capacity: "128GB",screenSize: "6.3吋",batterysize:"4700mAh",frontcamara:"1050萬",maincamara:"5000+4800",cpu:"Google Tensor G4",RAM:"12GB", color: "黑色", price: 26490, date: "2024-08-22", img: "https://via.placeholder.com/150" },
+            { name: "pixel 9 Pro", brand: "Google", capacity: "128GB",screenSize: "6.3吋",batterysize:"4700mAh",frontcamara:"4200萬",maincamara:"5000+4800+4800",cpu:"Google Tensor G4",RAM:"16GB", color: "霧灰", price: 33490, date: "2024-08-22", img: "https://via.placeholder.com/150" },
+            { name: "OPPO Reno13", brand: "OPPO", capacity: "256GB",screenSize: "6.59吋",batterysize:"5600mAh",frontcamara:"5000萬",maincamara:"5000+5000+800",cpu:"聯發科 天璣 8350",RAM:"12GB", color: "永恆藍", price: 17900, date: "2025-01-02", img: "https://via.placeholder.com/150" },
+            { name: "OPPO Reno13 Pro", brand: "OPPO", capacity: "512GB",screenSize: "6.83吋",batterysize:"5800mAh",frontcamara:"5000萬",maincamara:"5000+800+200",cpu:"聯發科 天璣 8350",RAM:"12GB", color: "石墨灰", price: 23990, date: "2025-01-02", img: "https://via.placeholder.com/150" },
+            { name: "Xperia 1 VI", brand: "Sony", capacity: "256GB",screenSize: "6.5吋",batterysize:"5000mAh",frontcamara:"1200萬",maincamara:"4800+1200+1200",cpu:"高通 Snapdragon 8 Gen 3",RAM:"12GB", color: "黑色", price: 39900, date: "2024-05-31", img: "https://via.placeholder.com/150" },
+            { name: "S25 Ultra", brand: "Samsung", capacity: "256GB",screenSize: "6.9吋",batterysize:"5000mAh",frontcamara:"1200萬",maincamara:"20000+5000+5000+1000",cpu:"高通 Snapdragon 8 Elite For Galaxy",RAM:"12GB", color: "鈦黑", price: 43900, date: "2025-02-11", img: "https://via.placeholder.com/150" },
+            { name: "Galaxy A56", brand: "Samsung", capacity: "256GB",screenSize: "6.7吋",batterysize:"5000mAh",frontcamara:"1200萬",maincamara:"5000+1200+500",cpu:"Exynos 1580",RAM:"8GB", color: "秘境黑", price: 17900, date: "2025-03-18", img: "https://via.placeholder.com/150" },
+            { name: "V50", brand: "vivo", capacity: "256GB",screenSize: "6.77吋",batterysize:"6000mAh",frontcamara:"5000萬",maincamara:"5000+5000",cpu:"高通 Snapdragon 7 Gen 3",RAM:"12GB", color: "緞光黑", price: 18990, date: "2025-03-03", img: "https://via.placeholder.com/150" },
+            { name: "X200 Pro", brand: "vivo", capacity: "512GB",screenSize: "6.78吋",batterysize:"6000mAh",frontcamara:"3200萬",maincamara:"20000+5000+5000",cpu:"聯發科 天璣 9400",RAM:"16GB", color: "辰夜黑", price: 37990, date: "2024-11-29", img: "https://via.placeholder.com/150" },
+            { name: "Zenfone 12 Ultra", brand: "Asus", capacity: "256GB",screenSize: "6.78吋",batterysize:"5500mAh",frontcamara:"3200萬",maincamara:"5000+3200+1300",cpu:"高通 Snapdragon 8 Elite",RAM:"12GB", color: "黑色", price: 29900, date: "2024-09-20", img: "https://via.placeholder.com/150" },
+            { name: "ASUS ROG Phone 9 Pro", brand: "ASUS",screenSize: "6.78吋",batterysize:"5800mAh",frontcamara:"3200萬", capacity: "512GB",maincamara:"45000+3200+1300",cpu:"高通 Snapdragon 8 Elite",RAM:"16GB", color: "灰色", price: 39900, date: "2025-02-14", img: "https://via.placeholder.com/150" }
+        ];
+
+        let selectedProducts = [];
+
+        // 更新型號選項
+        function updateModelOptions() {
+            const brand = document.getElementById('brandFilter').value;
+            const modelFilter = document.getElementById('modelFilter');
+            modelFilter.innerHTML = '<option value="">型號</option>';
+            const filteredModels = products.filter(p => !brand || p.brand === brand);
+            filteredModels.forEach(p => {
+                modelFilter.innerHTML += `<option value="${p.name}">${p.name}</option>`;
+            });
+        }
+
+        // 清除所有篩選器並清空顯示的產品
+        function clearAll() {
+            document.getElementById('brandFilter').value = '';
+            document.getElementById('capacityFilter').value = '';
+            document.getElementById('colorFilter').value = '';
+            document.getElementById('modelFilter').value = '';
+            document.getElementById('productList').innerHTML = '';
+            selectedProducts = [];
+            document.getElementById('comparisonTableContainer').innerHTML = '';
+        }
+
+        // 更新產品列表
+        function updateProductList() {
+            const selectedModel = document.getElementById('modelFilter').value;
+            const productList = document.getElementById('productList');
+            const selectedProduct = products.find(p => p.name === selectedModel);
+
+            if (selectedProduct) {
+                const alreadyAdded = selectedProducts.some(p => p.name === selectedProduct.name);
+                if (alreadyAdded) return;
+
+                selectedProducts.push(selectedProduct);
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <button class="remove-btn" onclick="this.parentElement.remove(); removeProduct('${selectedProduct.name}')">X</button>
+                    <img src="${selectedProduct.img}" alt="${selectedProduct.name}">
+                    <p>空機價 ${selectedProduct.price} 元</p>
+                    <p>${selectedProduct.name}</p>
+                    <p>上市日期：${selectedProduct.date}</p>
+                `;
+                productList.appendChild(card);
+            }
+        }
+
+        // 生成比較表格
+        function generateComparisonTable() {
+            if (selectedProducts.length === 0) {
+                alert("請選擇至少一個機型進行比較！");
+                return;
+            }
+
+            let tableHTML = '<table class="comparison-table"><thead><tr><th>功能項目</th>';
+            selectedProducts.forEach(product => {
+                tableHTML += `<th>${product.name}</th>`;
+            });
+            tableHTML += '</tr></thead><tbody>';
+
+            // 設定功能項目及其對應值
+            const features = [
+                { label: "CPU", values: selectedProducts.map(p => p.cpu) },
+                { label: "RAM", values: selectedProducts.map(p => p.RAM) },
+                { label: "相機", values: selectedProducts.map(p => p.maincamara) },
+                { label: "電池", values: selectedProducts.map(p => p.batterysize) },
+                { label: "螢幕大小", values: selectedProducts.map(p => p.screenSize) },
+                { label: "價格", values: selectedProducts.map(p => `${p.price} 元`) },
+                { label: "上市日期", values: selectedProducts.map(p => p.date) }
+            ];
+
+            // 填入功能項目
+            features.forEach(feature => {
+                tableHTML += `<tr><td>${feature.label}</td>`;
+                feature.values.forEach(value => {
+                    tableHTML += `<td>${value}</td>`;
+                });
+                tableHTML += '</tr>';
+            });
+
+            tableHTML += '</tbody></table>';
+
+            document.getElementById('comparisonTableContainer').innerHTML = tableHTML;
+        }
+
+        document.getElementById('modelFilter').addEventListener('change', updateProductList);
+    </script>
+</body>
+</html>
