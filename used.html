@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帳單分析</title>
+    <style>
+        table {
+            width: 100%;
+        }
+        th, td {
+            border:1.5px solid rgb(63, 63, 63);
+            padding: 0px;
+            text-align: center;
+        }
+        .header {
+            background-color: #fb4261;
+            font-weight: bold;
+            font-size: 18px;
+            border: 1px solid rgb(192, 192, 192);
+            border-collapse: collapse;
+        }
+        .headerer {
+            background-color: #ee8798;
+            font-weight: bold;
+            font-size: 18px;
+            border-collapse: collapse;
+            border: 1px solid rgb(192, 192, 192);
+        }
+        .subheader {
+            background-color: #FFD700;
+            font-weight: bold;
+        }
+        .average-row {
+            background-color:rgb(212, 205, 105);
+            font-weight: bold;
+            color:blue
+        }
+        .green-color {
+            background-color: rgb(212, 205, 105);
+        }
+        .yellow-color{
+            background-color: #FFFACD;
+        }
+    </style>
+</head>
+<body>
+    <table style="border-collapse: collapse;">
+        <thead>
+            <tr class="header">
+                <th colspan="9">帳單分析</th>
+            </tr>
+            <tr class="headerer">
+                <th colspan="9">證號：<input type="text" placeholder='0988000111' style="width:100px;">設備：               </th>
+            </tr>
+        </table>
+        <table> 
+            <tr>
+                <th colspan="9"style="height: 25px;"></th>
+            </tr>
+            <tr class="header">
+                <th colspan="9" class="green-color">半年歷史用量查詢<span style="color:red;">（設備號碼：0988000111）</span>
+                </th>
+            </tr>
+            <tr class="subheader">
+                <th class="green-color">試算月份</th>
+                <th class="green-color">月租費</th>
+                <th class="green-color">語音網內(內容/金額)</th>
+                <th class="green-color">語音網外(內容/金額)</th>
+                <th class="green-color">語音市話(內容/金額)</th>
+                <th class="green-color">簡訊網內(內容/金額)</th>
+                <th class="green-color">簡訊網外(內容/金額)</th>
+                <th class="green-color">數據(內容/金額)</th>
+                <th class="green-color">帳單金額</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="yellow-color">
+                <td>202406</td>
+                <td>999</td>
+                <td>90分鐘/0元</td>
+                <td>80分鐘/0元</td>
+                <td>56分鐘/0元</td>
+                <td>0則/0元</td>
+                <td>0則/0元</td>
+                <td>24.1GB/0元</td>
+                <td>999</td>
+            </tr>
+            <tr>
+                <td>202407</td>
+                <td>999</td>
+                <td>102分鐘/0元</td>
+                <td>86分鐘/0元</td>
+                <td>104分鐘/0元</td>
+                <td>0則/0元</td>
+                <td>0則/0元</td>
+                <td>8.04GB/0元</td>
+                <td>1079</td>
+            </tr>
+            <tr class="yellow-color">
+                <td>202408</td>
+                <td>999</td>
+                <td>85分鐘/0元</td>
+                <td>100分鐘/0元</td>
+                <td>98分鐘/0元</td>
+                <td>0則/0元</td>
+                <td>0則/0元</td>
+                <td>15GB/0元</td>
+                <td>1167</td>
+            </tr>
+            <tr>
+                <td>202409</td>
+                <td>999</td>
+                <td>120分鐘/0元</td>
+                <td>60分鐘/0元</td>
+                <td>76分鐘/0元</td>
+                <td>0則/0元</td>
+                <td>0則/0元</td>
+                <td>12.3GB/0元</td>
+                <td>999</td>
+            </tr>
+            <tr class="yellow-color">
+                <td>202410</td>
+                <td>999</td>
+                <td>97分鐘/0元</td>
+                <td>79分鐘/0元</td>
+                <td>84分鐘/0元</td>
+                <td>0則/0元</td>
+                <td>0則/0元</td>
+                <td>10.7GB/0元</td>
+                <td>1023</td>
+            </tr>
+            <tr>
+                <td>202411</td>
+                <td>999</td>
+                <td>107分鐘/0元</td>
+                <td>80分鐘/0元</td>
+                <td>123分鐘/0元</td>
+                <td>0則/0元</td>
+                <td>0則/0元</td>
+                <td>12.9GB/0元</td>
+                <td>1257</td>
+            </tr>
+            <tr class="average-row">
+                <td>平均6個月資訊</td>
+                <td>999</td>
+                <td>100.1分鐘/元</td>
+                <td>80.3分鐘/元</td>
+                <td>90.1分鐘/元</td>
+                <td>0則/元</td>
+                <td>0則/元</td>
+                <td>13.5GB/元</td>
+                <td>1087</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

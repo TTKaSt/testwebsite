@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客戶基本資料</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px; /* 設置字體大小為12px */
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 0px;
+            font-size: 14px; /* 設置表格字體大小為12px */
+            color: black; /* 設置文字顏色為黑色 */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .merged {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 14px; /* 設置合併單元格字體大小為12px */
+            color: black; /* 設置文字顏色為黑色 */
+        }
+        .customer-info {
+            background-color: rgb(107, 168, 77); /*綠色背景 */
+        }
+        .device-info {
+            background-color: rgb(202, 223, 240); /* 藍色背景 */
+        }
+        .contract-info {
+            background-color: rgb(255, 209, 173); /* 橘色背景 */
+            text-align: center;
+        }
+        .value-added-info {
+            background-color: rgb(255, 249, 215); /* 黃色背景 */
+            text-align: center;
+            border:1.5px solid black;
+        }
+        .billing-info {
+            background-color: rgb(184, 232, 156); /* 綠色背景 */
+        }
+        .header {
+            background-color: #80b64a;
+            text-align: center;
+            font-size: 14px;
+            color: black;
+            height: 16px;
+        }
+        .backcolor {
+            background-color: #f28b7f;
+            text-align: center;
+            border: 1.5px solid black; /* 設置表格邊框為黑色 */
+        }
+        .backcolor1 {
+            background-color: rgb(58, 190, 190);
+            text-align: center;
+        }
+        .backcolor2 {
+            background-color: rgb(172, 246, 246);
+            text-align: center;
+        }
+        .promotion-plan-name {
+            width: 100px; /* 設置促銷計劃名稱列的寬度 */
+            background-color: #f28b7f;
+            text-align: center;
+            border: 1.5px solid black; /* 設置表格邊框為黑色 */
+        }
+        .promotion-plan-name1 {
+            background-color: #f5c9c4;
+            text-align: left;
+            border: 1.5px solid black; /* 設置表格邊框為黑色 */
+        }
+        .promotion-plan-name2 {
+            background-color: #f5c9c4;
+            text-align: center;
+            border: 1.5px solid black; /* 設置表格邊框為黑色 */
+        }
+        .needpay {
+            text-align: right;  
+            border: 1.5px solid black; /* 設置表格邊框為黑色 */
+            color: rgb(210, 25, 25);
+        }
+        a {
+            text-decoration: none; /* 去除底線 */
+            color: blue; /* 設置正常狀態下的文字顏色 */
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td class="header" colspan="15" style="border:1.5px solid black;">客戶基本資料列表</td>
+        </tr>
+        <tr>
+            <td class="merged device-info" rowspan="7" style="border:1.5px solid black;">設備資訊</td>
+            <td>客戶號碼：04-22221234<br>(相對FTTB附掛資料：42-Y002123)</td>
+            <td>使用狀況：使用中</td>
+            <td colspan="3">前案</td>
+        </tr>
+        <tr>
+            <td>服務種類：獨用電話</td>
+            <td>客戶名稱：陳**</td>
+            <td colspan="3">裝址交換局(所屬營運處)：忠明</td>
+        </tr>
+        <tr>
+            <td>申裝類別：普通</td>
+            <td>刊登名稱：</td>
+            <td colspan="3">客戶證號：A*********</td>
+        </tr>
+        <tr>
+            <td>限異資訊：一般客戶</td>
+            <td>生日：</td>
+            <td colspan="3">代表人證號：</td>
+        </tr>
+        <tr>
+            <td>計費方式：基本型B</td>
+            <td>代表人名稱：</td>
+            <td colspan="3">報稅統編：</td>
+        </tr>
+        <tr>
+            <td>保證金：0</td>
+            <td>正機啟用日：106/03/28</td>
+            <td colspan="3">代表人證號：</td>
+        </tr>
+        <tr>
+            <td colspan="14" style="border-bottom:1.5px solid black;">機件設備</td>
+        </tr>
+        <tr>
+            <td class="backcolor1" style="border:1.5px solid black;">產品</td>
+            <td class="backcolor1" style="border:1.5px solid black;">設備名稱</td>
+            <td class="backcolor1" style="border:1.5px solid black;">產別</td>
+            <td class="backcolor1" style="border:1.5px solid black;">機型</td>
+            <td class="backcolor1" colspan="2" style="border:1.5px solid black;">啟用日</td>
+        </tr>    
+        <tr>
+            <td class="backcolor2" style="border:1.5px solid black;">獨用電話</td>
+            <td class="backcolor2" style="border:1.5px solid black;">正機</td>
+            <td class="backcolor2" style="border:1.5px solid black;">自備</td>
+            <td class="backcolor2" style="border:1.5px solid black;">按自備話</td>
+            <td class="backcolor2" colspan="2" style="border:1.5px solid black;">106/03/28</td>
+        </tr>    
+        <tr>
+            <td class="merged contract-info" style="border:1.5px solid black;">ADSL</td>
+            <td>連線單位：</td>
+            <td>傳輸速率：</td>
+            <td>HN/ISP/AT/TM：</td>
+            <td colspan="3">ADSL使用狀況：</td>
+        </tr>
+        <tr>
+            <td class="merged contract-info" rowspan="3" style="border:1.5px solid black;">MOD</td>
+            <td>MD號碼：</td>
+            <td>機上盒數量：</td>
+            <td colspan="3">平台：</td>
+        </tr> 
+        <tr>
+            <td >MOD已訂頻道查詢</td>
+            <td>MOD近半年訂閱紀錄</td>
+            <td colspan="3">MOD使用狀況：</td>
+        </tr>
+        <tr>
+            <td >開機等級：</td>
+            <td></td>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <td class="value-added-info" rowspan="2" style="border:1.5px solid black;">合約資訊</td>
+            <td colspan="14">解約金查詢</td>
+        </tr>
+        <tr>   
+            <td colspan="14" style="border-bottom:1.5px solid black;">-優惠方案</td>
+        </tr> 
+        <tr>
+            <td colspan="15" style="border:1.5px solid black;">無優惠方案</td>
+            
+        </tr>
+        <tr>
+            <td class="value-added-info" rowspan="2">加值/特業</td>
+            <td colspan="14">特別業務：禁撥付費語音（0204）。話中插接。來電答鈴。</td>
+        </tr>
+        <tr>    
+            <td colspan="14">寬頻/WiFi加值：</td>
+        </tr> 
+        <tr>
+            <td class="merged billing-info" rowspan="6" style="border:1.5px solid black;">帳務資訊</td>
+            <td colspan="3">裝機地址：台中市南屯區黎明路二段658號</td>
+            <td colspan="3">供裝距離(帶入設備)<br><a href="https://web.leamis.cht.com.tw/eLeamis/jsp/leamis/adsl/adsllength.jsp" target="_blank">供裝距離(外部查詢)</td></a>
+        </tr>
+        <tr>
+            <td colspan="3">帳單地址：新北市板橋區民族路168號</td>
+            <td colspan="3">提醒繳費聯絡電話：</td>
+        </tr>
+        <tr>
+            <td colspan="14">戶籍地址：新北市中和區中華路二段55號</td>
+        </tr>
+       <tr>
+        <td>設備所有人Email：</td>
+        <td>帳單類別：紙本帳單</td>
+        <td colspan="3">計費週期：3</td>
+       </tr>
+       <tr>
+        <td>轉帳代繳帳號：</td>
+        <td>合併帳戶帳號：</td>
+        <td colspan="3">包月/限索閱明細：有包月明細,無限制索閱</td>
+       </tr>
+       <tr>
+        <td>帳單分析</td>
+        <td>合併帳單地址：新北市板橋區民族路168號</td>
+        <td colspan="3"></td>
+       </tr>
+    </table>
+    <button onclick="goToNextPage('page1')" style="width: 80px;font-size: 14px;font-weight: blod; margin: 5px 0px 0px 700px; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">回上一步</button>
+    <button onclick="goToNextPage('page2')" style="width: 50px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">新裝</button>
+    <button onclick="goToNextPage('page3')" style="width: 50px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">異動</button>
+    <button onclick="goToNextPage('page4')" style="width: 80px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">查核備註</button>
+    <button onclick="goToNextPage('page5')" style="width: 100px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">個資回覆單</button>
+    <button onclick="goToNextPage('page6')" style="width: 140px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">關閉客戶資料列表</button>
+<script>
+        // goToNextPage 函數根據傳遞的參數決定跳轉的頁面
+        function goToNextPage(page) {
+            // 根據不同的參數跳轉到不同的頁面
+            switch (page) {
+                case 'page1':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page2':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page3':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page4':
+                   alert('本次測驗無功能');
+                    break;   
+                case 'page5':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page6':
+                   alert('本次測驗無功能');
+                    break; 
+                default:
+                    alert('無效的頁面');
+            }
+        }
+</script>
+</body>
+</html>
