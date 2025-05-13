@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button-row {
+            display: flex;
+            margin: 1px 0; /* 调整行之间的间距 */
+        }
+
+        .button-row.center {
+            justify-content: center;
+        }
+
+        .button-row.left {
+            justify-content: flex-start;
+            width: 95%;
+            height: auto;
+            padding: 10px; /* 调整填充使其靠左 */
+	        margin-left:50px;
+        }
+
+        .button-row button {
+            margin: 0 1px; /* 调整按钮之间的间距 */
+            padding: 5px 1px; /* 调整按钮内边距 */
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .top1-frame {
+            height: 30%;
+        }
+        .top2-frame {
+            height: 20%;
+        }
+        .bottom-frame {
+            height: 60%;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="button-row left">
+        <button onclick="goToNextPage1(this)" style="width: 100px; border: none;font-size: 16px;">行動(1)</button>
+        <button onclick="goToNextPage2(this)" style="width: 100px; border: none;font-size: 16px;">預付卡(1)</button>
+        <button onclick="goToNextPage3(this)" style="width: 125px; border: none;font-size: 16px;">市話(按此查詢)</button>
+        <button id="internet-btn" onclick="goToNextPage4(this)" style="width: 125px; border: none;font-size: 16px;">寬頻(按此查詢)</button>
+        <p style="height: 5px; margin: 3px 0px 0px 3px; ">()內數字為使用中設備，不含非使用中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(112/4/21起預設先查行動，如有需要再請點市話、寬頻頁籤)</p>
+    </div>
+    <script>
+        function goToNextPage1() {
+            parent.frames['top2-frame'].location.href = 'sim3mobile.html';
+            // Reset the content of the bottom frame
+            parent.frames['bottom-frame'].location.href = 'page4.html';
+        }
+        function goToNextPage2() {
+            parent.frames['top2-frame'].location.href = 'sim3prepaid.html';
+            // Reset the content of the bottom frame
+            parent.frames['bottom-frame'].location.href = 'page4.html';
+        }
+        function goToNextPage3(button) {
+            parent.frames['top2-frame'].location.href = 'sim3fixphone.html';
+            parent.frames['bottom-frame'].location.href = 'page4.html';
+            button.innerText = "市話(1)";
+            const internetBtn = document.getElementById("internet-btn");
+            if (internetBtn) {
+        internetBtn.innerText = "寬頻(1)";
+        }
+}
+        function goToNextPage4() {
+            parent.frames['top2-frame'].location.href = 'sim3internet.html';
+            // Reset the content of the bottom frame
+            parent.frames['bottom-frame'].location.href = 'page4.html';
+        }
+    </script>
+
+</body>
+</html>
+

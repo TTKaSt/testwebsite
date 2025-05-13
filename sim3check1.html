@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>功能查詢頁</title>
+    <style>
+        .button-row.center {
+            justify-content: center;
+            border: none;
+            height: 5%;
+        }
+        .button-row {
+            display: flex;
+            align-items: center;
+            border: none;
+        }
+
+        .button-row a {
+            color: inherit;
+            text-decoration: none;
+            border: none;
+        }
+
+        .button-row a:visited {
+            color: inherit;
+        }
+
+        iframe {
+            width: 100%;
+            border: none;
+            height: 100vh;
+        }
+        .button-row a.active p {
+            color: red;
+            font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <!-- 上方功能列 -->
+    <div class="button-row center">
+        <p>輸入證號</p>
+        <img src="green.png" style="width:30px; height:30px;">
+
+        <a href="sim3check1.html" target="top1-frame" onclick="loadMultipleFrames1(this);" class="active">
+            <p style="margin: 0;">信用查核</p>
+        </a>
+        <img src="green.png" style="width:30px; height:30px;">
+
+        <a href="sim3idcheck.html" target="top2-frame" onclick="loadMultipleFrames2(this);" id="idcheck">
+            <p style="margin: 0;">證件驗證</p>
+        </a>
+        <img src="green.png" style="width:30px; height:30px;">
+
+        <a href="javascript:void(0);" onclick="loadMultipleFrames(this);" id="checkinfo">
+            <p style="margin: 0;">資料查核</p>
+        </a>
+        <img src="green.png" style="width:30px; height:30px;">
+
+        <!-- <a href="" target="bottom-frame" onclick="setActive(this);"> -->
+            <p style="margin: 0;">查詢或受理</p>
+        </a>
+        <img src="green.png" style="width:30px; height:30px;">
+
+        <!-- <a href="" target="bottom-frame" onclick="setActive(this);"> -->
+            <p style="margin: 0;">來店總結</p>
+        </a>
+    </div>
+   <script>
+       function setActive(linkElement) {
+    // 移除所有按鈕的 active 樣式
+    const links = document.querySelectorAll(".button-row a");
+    links.forEach(link => link.classList.remove("active"));
+
+    // 為點擊的按鈕加上 active 樣式
+    if (linkElement) {
+        linkElement.classList.add("active");
+    }
+}
+function loadMultipleFrames(linkElement) {
+    setActive(linkElement); // 切換 active 樣式
+
+    const top2 = window.parent.document.getElementById("top2-frame");
+    if (top2) top2.style.height = "15%"; 
+    const mid = window.parent.document.getElementById("mid-frame");
+    if (mid) mid.style.height = "5%"; 
+
+
+    // 載入兩個不同的網頁到不同 iframe
+    window.parent.document.getElementById("top2-frame").src = "sim3mobile.html";
+    window.parent.document.getElementById("mid-frame").src = "sim3allnum.html";
+    window.parent.document.getElementById("bottom-frame").src = "";
+}
+function loadMultipleFrames1(linkElement) {
+    setActive(linkElement); // 切換 active 樣式
+
+    const top2 = window.parent.document.getElementById("top2-frame");
+    if (top2) top2.style.height = "30%"; 
+    const mid = window.parent.document.getElementById("mid-frame");
+    if (mid) mid.style.height = "5%"; 
+
+    // 載入兩個不同的網頁到不同 iframe
+    window.parent.document.getElementById("top2-frame").src = "check1info.html";
+    window.parent.document.getElementById("mid-frame").src = "";
+    window.parent.document.getElementById("bottom-frame").src = "";
+}
+function loadMultipleFrames2(linkElement) {
+    setActive(linkElement); // 切換 active 樣式
+
+    const top2 = window.parent.document.getElementById("top2-frame");
+    if (top2) top2.style.height = "70%"; 
+    const mid = window.parent.document.getElementById("mid-frame");
+    if (mid) mid.style.height = "5%"; 
+
+    // 載入兩個不同的網頁到不同 iframe
+    window.parent.document.getElementById("top2-frame").src = "";
+    window.parent.document.getElementById("mid-frame").src = "";
+    window.parent.document.getElementById("bottom-frame").src = "";
+
+}
+    </script>
+</body>
+</html>

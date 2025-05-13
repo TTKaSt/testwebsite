@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7x4 Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid rgb(156,156,156);
+            padding: 0px;
+            text-align: center;
+            font-weight: bold;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .sit {
+            text-align: left;
+            background-color: rgb(127, 203, 247);
+        }
+        a {
+            text-decoration: none; /* 去除底線 */
+            color: blue; /* 設置正常狀態下的文字顏色 */
+        }
+
+        a:visited {
+            color: rgba(41, 41, 228, 0.747); /* 點擊後顏色不變 */
+        }
+
+        a:hover {
+            color: rgba(41, 41, 228, 0.747); /* 滑鼠懸停時顏色不變 */
+        }
+
+        a:active {
+            color: rgba(41, 41, 228, 0.747); /* 點擊時顏色不變 */
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th class="sit" colspan="11">證號：A*********</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td  style="width: 40px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">筆數</td>
+                <td  style="width: 120px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">設備號碼</td>
+                <td  style="width: 100px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">服務種類</td>
+                <td  style="width: 80px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">客戶名稱</td>
+                <td  style="width: 120px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">限異資訊</td>
+                <td  style="width: 120px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">使用狀況</td>
+                <td  style="width: 120px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">寬頻種類</td>
+                <td  style="width: 120px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">速率</td>
+                <td  style="width: 120px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">是否有MOD</td>
+                <td  style="width: 120px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">寬頻啟用日</td>
+                <td  style="width: 120px;text-align: center; background-color: rgb(144, 198, 219);font-weight: bolder;">計費週期</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td style="text-align: left;"><a href="sim2internetinfo.html" target="bottom-frame">42-Y022111</td></a>
+                <td>FTTB</td>
+                <td>陳**</td>
+                <td>一般客戶</td>
+                <td>使用中</td>
+                <td>FTTB</td>
+                <td>60M/20M</td>
+                <td>否</td>
+                <td></td>
+                <td>3</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <button onclick="goToNextPage('page1')" style="width: 50px;font-size: 14px;font-weight: blod; margin: 5px 0px 0px 800px; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">新裝</button>
+    <button onclick="goToNextPage('page2')" style="width: 100px;font-size: 14px;font-weight: blod; background-color: rgba(3, 54, 165, 0.801); color :white; border-radius: 20px;">查核備註</button>
+<script>
+        // goToNextPage 函數根據傳遞的參數決定跳轉的頁面
+        function goToNextPage(page) {
+            // 根據不同的參數跳轉到不同的頁面
+            switch (page) {
+                case 'page1':
+                   alert('本次測驗無功能');
+                    break;
+                case 'page2':
+                   alert('本次測驗無功能');
+                    break;
+                default:
+                    alert('無效的頁面');
+            }
+        }
+</script>
+</body>
+</html>

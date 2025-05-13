@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設備查欠</title>
+    <style>
+        body {
+            font-family: Microsoft JhengHei, sans-serif;
+            background-color: #f8f8f8;
+            font-weight: normal;
+        }
+
+        .container {
+            width: 45%;
+            margin: 0;
+            background: white;
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid black;
+        }
+        th, td {
+            border: 2px solid black;
+            text-align: center;
+        }
+        th {
+            background-color: #d0e4f5;
+        }
+        .header {
+            background-color: #ffffcc;
+            font-weight: bolder;
+            border:1px solid rgb(182, 181, 181);
+        }
+        .summary {
+            background-color: #c7ebc7;
+            color: rgb(4, 4, 174);
+            border:2px solid black;
+            display: flex;
+            justify-content: space-between;
+        }
+        .highlight {
+            background-color: #f7e6e6;
+        }
+        .highLightfont {
+            background-color: rgb(252, 250, 199);
+            color:rgb(4, 4, 174);
+            text-align: center;
+        }
+        .equipment {
+            background-color: rgb(176, 189, 235);
+            border: 2px solid black;
+            margin-top:-19px ;
+            color:rgb(4, 4, 174);
+            font-size: 18px;
+            font-weight: normal;
+        }
+        .topInfor {
+            background-color: rgb(235, 233, 233);
+            color:rgb(4, 4, 174);
+            font-weight:normal ;
+            font-size: 18px;
+        }
+        button {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: rgb(255, 200, 100);
+        }
+        button:active {
+            background-color: rgb(230, 180, 90);
+        }
+        .pfontColorBlue {
+            color:blue;
+            font-size: 18px;
+            font-weight: 250;    
+        }
+        .pfontColorRed {
+            background-color: #f7e6e6;
+            color:red;
+        }
+        .checkbox {
+            width: 25px ;
+            height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">目前所在頁面 >> 查欠</div>
+        <br>
+        <div class="equipment" style="display: flex; align-items: center; gap: 10px;">
+            🔍 設備號碼：
+            <input type="text" id="equipment" style="height: 25px;">
+            <button style="background-color: rgb(252, 228, 184);font-size: 20px;height: 30px;color:rgb(4, 4, 174);">設備查欠</button>
+        </div>
+
+        <div class="summary">
+            租用人證號: A1XXXXXX
+            <span>查欠筆數-北區：0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中區：2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;南區：0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;總筆數：2</span>
+        </div>
+
+        <table>
+            <tr>
+                <td colspan="15" style="text-align: left;background-color: rgb(235, 233, 233);">
+                    <button id="selectAllBtn" class="pfontColorBlue" style="height: 30px;background-color:rgb(248, 217, 159);">補單全選</button>
+                    <button class="pfontColorBlue" style="height: 30px;background-color:rgb(248, 217, 159);">補單列印</button>
+                    <button class="pfontColorBlue" style="height: 30px;background-color:rgb(248, 217, 159);">畫面列印</button>
+                    <span style="color:rgb(5, 5, 128);font-size: 20px;">補單總金額：</span>
+                    <input id="totalAmount" style="height: 20px;width: 200px;border:2px solid black;" readonly>
+                </td>    
+            </tr>
+            <tr>
+                <th class="topInfor">筆數</th>
+                <th class="topInfor">補單</th>
+                <th class="topInfor">細項</th>
+                <th class="topInfor">識別</th>
+                <th class="topInfor">局碼</th>
+                <th class="topInfor">設備號碼</th>
+                <th class="topInfor">出帳年月</th>
+                <th class="topInfor">金額</th>
+                <th class="topInfor">繳費期限</th>
+                <th class="topInfor">轉帳帳號<br>使用狀況</th>
+            </tr>
+            <tr class="highLightfont">
+                <td>1</td>
+                <td><input type="checkbox" class="checkbox"></td>
+                <td><input type="checkbox" class="checkbox" disabled></td>
+                <td></td>
+                <td>42</td>
+                <td>22221234</td>
+                <td>11303</td>
+                <td class="money">75</td>
+                <td>114/06/05</td>
+                <td>000001110101010201<br>國泰世華商業銀行</td>
+            </tr>
+            <tr class="pfontColorRed">
+                <td>2</td>
+                <td><input type="checkbox" class="checkbox"></td>
+                <td><input type="checkbox" class="checkbox" disabled></td>
+                <td>G8</td>
+                <td>43</td>
+                <td>0912345678</td>
+                <td>11402</td>
+                <td class="money">599</td>
+                <td>114/03/25</td>
+                <td></td>
+            </tr>
+            <tr class="pfontColorRed">
+                <td>3</td>
+                <td><input type="checkbox" class="checkbox"></td>
+                <td><input type="checkbox" class="checkbox" disabled></td>
+                <td>G8</td>
+                <td>43</td>
+                <td>0912345678</td>
+                <td>11402</td>
+                <td class="money">710</td>
+                <td>114/02/25</td>
+                <td></td>
+            </tr>
+            <tr class="pfontColorRed">
+                <td>4</td>
+                <td><input type="checkbox" class="checkbox"></td>
+                <td><input type="checkbox" class="checkbox" disabled></td>
+                <td>G8</td>
+                <td>43</td>
+                <td>0912345678</td>
+                <td>11402</td>
+                <td class="money">599</td>
+                <td>114/01/25</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        window.onload = function () {
+            function updateDataAmount() {
+                document.querySelectorAll("tr").forEach(row => {
+                    const moneyElement = row.querySelector(".money");
+                    const checkbox = row.querySelector("input.checkbox");
+                    if (moneyElement && checkbox) {
+                        checkbox.setAttribute("data-amount", moneyElement.textContent.trim());
+                    }
+                });
+            }
+
+            function updateTotalAmount() {
+                let totalAmount = 0;
+                document.querySelectorAll(".checkbox:checked").forEach(checkbox => {
+                    totalAmount += parseFloat(checkbox.getAttribute('data-amount') || "0");
+                });
+                document.getElementById("totalAmount").value = totalAmount.toLocaleString();
+            }
+
+            document.getElementById("selectAllBtn").addEventListener("click", () => {
+                const checkboxes = document.querySelectorAll("td:nth-child(2) .checkbox");
+                const allChecked = [...checkboxes].every(cb => cb.checked);
+                checkboxes.forEach(cb => cb.checked = !allChecked);
+                updateTotalAmount();
+            });
+
+            document.querySelectorAll(".checkbox").forEach(checkbox => {
+                checkbox.addEventListener("change", updateTotalAmount);
+            });
+
+            updateDataAmount();
+            updateTotalAmount();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品比較</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        select { padding: 5px; margin: 10px; }
+        table { width: 60%; margin: 20px auto; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+    <h2>產品比較</h2>
+
+    <label>選擇產品 1:
+        <select id="product1" onchange="updateTable()">
+            <option value="">請選擇</option>
+        </select>
+    </label>
+
+    <label>選擇產品 2:
+        <select id="product2" onchange="updateTable()">
+            <option value="">請選擇</option>
+        </select>
+    </label>
+
+    <table>
+        <tr>
+            <th>規格</th>
+            <th id="p1-name">產品 1</th>
+            <th id="p2-name">產品 2</th>
+        </tr>
+        <tr>
+            <td>價格</td>
+            <td id="p1-price">-</td>
+            <td id="p2-price">-</td>
+        </tr>
+        <tr>
+            <td>螢幕尺寸</td>
+            <td id="p1-screen">-</td>
+            <td id="p2-screen">-</td>
+        </tr>
+        <tr>
+            <td>電池容量</td>
+            <td id="p1-battery">-</td>
+            <td id="p2-battery">-</td>
+        </tr>
+    </table>
+
+    <script>
+        // 產品資料庫
+        const products = [
+            { name: "iPhone 15", price: "$799", screen: "6.1 吋", battery: "3240mAh" },
+            { name: "Samsung S23", price: "$699", screen: "6.1 吋", battery: "3900mAh" },
+            { name: "Google Pixel 8", price: "$599", screen: "6.2 吋", battery: "4575mAh" }
+        ];
+
+        // 初始化選單
+        function initDropdowns() {
+            const select1 = document.getElementById("product1");
+            const select2 = document.getElementById("product2");
+            products.forEach((p, index) => {
+                let option1 = new Option(p.name, index);
+                let option2 = new Option(p.name, index);
+                select1.add(option1);
+                select2.add(option2);
+            });
+        }
+
+        // 更新表格內容
+        function updateTable() {
+            let index1 = document.getElementById("product1").value;
+            let index2 = document.getElementById("product2").value;
+
+            if (index1 !== "") {
+                document.getElementById("p1-name").textContent = products[index1].name;
+                document.getElementById("p1-price").textContent = products[index1].price;
+                document.getElementById("p1-screen").textContent = products[index1].screen;
+                document.getElementById("p1-battery").textContent = products[index1].battery;
+            } else {
+                document.getElementById("p1-name").textContent = "產品 1";
+                document.getElementById("p1-price").textContent = "-";
+                document.getElementById("p1-screen").textContent = "-";
+                document.getElementById("p1-battery").textContent = "-";
+            }
+
+            if (index2 !== "") {
+                document.getElementById("p2-name").textContent = products[index2].name;
+                document.getElementById("p2-price").textContent = products[index2].price;
+                document.getElementById("p2-screen").textContent = products[index2].screen;
+                document.getElementById("p2-battery").textContent = products[index2].battery;
+            } else {
+                document.getElementById("p2-name").textContent = "產品 2";
+                document.getElementById("p2-price").textContent = "-";
+                document.getElementById("p2-screen").textContent = "-";
+                document.getElementById("p2-battery").textContent = "-";
+            }
+        }
+
+        // 初始化選單內容
+        initDropdowns();
+    </script>
+
+</body>
+</html>

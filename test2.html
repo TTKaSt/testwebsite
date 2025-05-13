@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品比較</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        select { padding: 5px; margin: 10px; }
+        table { width: 90%; margin: 20px auto; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #f4f4f4; }
+        img { width: 100px; height: auto; }
+        .dropdowns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    </style>
+</head>
+<body>
+
+    <h2>產品比較</h2>
+
+    <!-- 產品選擇 -->
+    <div class="dropdowns">
+        <select id="product1" onchange="updateTable()">
+            <option value="">選擇產品 1</option>
+        </select>
+        <select id="product2" onchange="updateTable()">
+            <option value="">選擇產品 2</option>
+        </select>
+        <select id="product3" onchange="updateTable()">
+            <option value="">選擇產品 3</option>
+        </select>
+        <select id="product4" onchange="updateTable()">
+            <option value="">選擇產品 4</option>
+        </select>
+        <select id="product5" onchange="updateTable()">
+            <option value="">選擇產品 5</option>
+        </select>
+    </div>
+
+    <!-- 產品比較表 -->
+    <table>
+        <tr>
+            <th>規格</th>
+            <th id="p1-name">產品 1</th>
+            <th id="p2-name">產品 2</th>
+            <th id="p3-name">產品 3</th>
+            <th id="p4-name">產品 4</th>
+            <th id="p5-name">產品 5</th>
+        </tr>
+        <tr>
+            <td>圖片</td>
+            <td><img id="p1-img" src="" alt=""></td>
+            <td><img id="p2-img" src="" alt=""></td>
+            <td><img id="p3-img" src="" alt=""></td>
+            <td><img id="p4-img" src="" alt=""></td>
+            <td><img id="p5-img" src="" alt=""></td>
+        </tr>
+        <tr>
+            <td>價格</td>
+            <td id="p1-price">-</td>
+            <td id="p2-price">-</td>
+            <td id="p3-price">-</td>
+            <td id="p4-price">-</td>
+            <td id="p5-price">-</td>
+        </tr>
+        <tr>
+            <td>螢幕尺寸</td>
+            <td id="p1-screen">-</td>
+            <td id="p2-screen">-</td>
+            <td id="p3-screen">-</td>
+            <td id="p4-screen">-</td>
+            <td id="p5-screen">-</td>
+        </tr>
+        <tr>
+            <td>電池容量</td>
+            <td id="p1-battery">-</td>
+            <td id="p2-battery">-</td>
+            <td id="p3-battery">-</td>
+            <td id="p4-battery">-</td>
+            <td id="p5-battery">-</td>
+        </tr>
+    </table>
+
+    <script>
+        // 產品資料庫
+        const products = [
+            { name: "iPhone 15", price: "$799", screen: "6.1 吋", battery: "3240mAh", img: "https://via.placeholder.com/100?text=iPhone+15" },
+            { name: "Samsung S23", price: "$699", screen: "6.1 吋", battery: "3900mAh", img: "https://via.placeholder.com/100?text=Samsung+S23" },
+            { name: "Google Pixel 8", price: "$599", screen: "6.2 吋", battery: "4575mAh", img: "https://via.placeholder.com/100?text=Pixel+8" },
+            { name: "Sony Xperia 1 V", price: "$999", screen: "6.5 吋", battery: "5000mAh", img: "https://via.placeholder.com/100?text=Xperia+1+V" },
+            { name: "OnePlus 11", price: "$699", screen: "6.7 吋", battery: "5000mAh", img: "https://via.placeholder.com/100?text=OnePlus+11" }
+        ];
+
+        // 初始化選單
+        function initDropdowns() {
+            for (let i = 1; i <= 5; i++) {
+                let select = document.getElementById("product" + i);
+                products.forEach((p, index) => {
+                    let option = new Option(p.name, index);
+                    select.add(option);
+                });
+            }
+        }
+
+        // 更新表格內容
+        function updateTable() {
+            for (let i = 1; i <= 5; i++) {
+                let index = document.getElementById("product" + i).value;
+                if (index !== "") {
+                    document.getElementById("p" + i + "-name").textContent = products[index].name;
+                    document.getElementById("p" + i + "-price").textContent = products[index].price;
+                    document.getElementById("p" + i + "-screen").textContent = products[index].screen;
+                    document.getElementById("p" + i + "-battery").textContent = products[index].battery;
+                    document.getElementById("p" + i + "-img").src = products[index].img;
+                    document.getElementById("p" + i + "-img").alt = products[index].name;
+                } else {
+                    document.getElementById("p" + i + "-name").textContent = "產品 " + i;
+                    document.getElementById("p" + i + "-price").textContent = "-";
+                    document.getElementById("p" + i + "-screen").textContent = "-";
+                    document.getElementById("p" + i + "-battery").textContent = "-";
+                    document.getElementById("p" + i + "-img").src = "";
+                    document.getElementById("p" + i + "-img").alt = "";
+                }
+            }
+        }
+
+        // 初始化選單內容
+        initDropdowns();
+    </script>
+
+</body>
+</html>
