@@ -1,0 +1,38 @@
+<!-- risklayout.html -->
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>風險查詢頁面</title>
+    <style>
+        body, html {
+            margin: 0;
+            height: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .top1-frame {
+            height: 5%;
+        }
+        .mid-frame {
+            height: 5%;
+        }
+        .top2-frame {
+            height: 70%;
+        }
+        .bottom-frame {
+            height: 60%;
+        }
+    </style>
+</head>
+<body>
+    <iframe class="top1-frame" name="top1-frame" src="sim2check1.html"></iframe>
+    <iframe class="mid-frame" name="mid-frame"></iframe>
+    <iframe class="top2-frame" name="top2-frame" src="sim2bill.html"></iframe>
+    <iframe class="bottom-frame" name="bottom-frame"></iframe>
+</body>
+</html>

@@ -72,7 +72,9 @@
         <button style="background-color: rgb(245, 245, 190);margin-left: 200px;"onclick="goToNextPage()" >客戶設備及信用查核</button>
         <button style="background-color: rgb(192, 248, 255);"onclick="clearForm()" >清除</button>
     </div>
-
+    <div style="margin-top: 5px;">
+        <button onclick="goHome()" style="background-color: rgb(242, 194, 89); border: none; padding: 5px 10px; width: 150px;">首頁</button>
+    </div>
  <script>
     function clearForm() {
         document.getElementById('input1').value = '';
@@ -107,6 +109,18 @@
         nextPageButton.click(); // 模擬點擊「下一頁」按鈕
       }
     });
+
+    function goHome() {
+    const leftBox = parent.document.getElementById('left-box');
+    const rightBox = parent.document.getElementById('right-box');
+
+    leftBox.style.display = 'block';
+    leftBox.style.width = '10%';
+
+    rightBox.style.width = '90%';
+    rightBox.src = 'right.html';
+    leftBox.src = 'left.html';
+}
 </script>
 
 </body>

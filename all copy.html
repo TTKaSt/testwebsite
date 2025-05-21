@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上方框架</title>
+<!--
+	<style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            background-image: url('toppic.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+	
+        .container {
+            width: 70%;
+            padding: 5px;
+	    color: red;
+        }
+        .form-group {
+            margin-bottom: 10px;
+	    float:left;
+        }
+        .menu-buttons {
+            margin-bottom: 10px;
+	    text-align: right;
+        }
+ 	.buttons {
+	   width: 300px;	
+	   color: red;
+	   padding: 5px 10px 20px 30px;
+	   text-align: right;
+        }
+
+    </style>
+-->
+</head>
+<body style="margin-top:10px;">
+    <table style="width:100%;height: 30px;background-color: black;">
+        <tr>
+            <td style="color: white;border-color: blue;text-align: center;">訂單作業</td>
+            <td style="color: white;border-color: blue;text-align: center;">帳務作業</td>
+            <td style="color: white;border-color: blue;text-align: center;">行銷作業</td>
+            <td style="color: white;border-color: blue;text-align: center;">維護作業</td>
+            <td style="color: white;border-color: rgb(134, 134, 245);text-align: center;">線上教學</td>
+            <td style="color: white;border-color: blue;text-align: center;">環境設定</td>
+            <td style="color: white;border-color: blue;text-align: center;">離開系統</td>
+        </tr>
+    </table>
+    <div style="display:inline; margin-top:500px;margin-left: 200px;">
+        <label for="input1" style="display:inline; ">設備或證號:</label>
+        <input type="text" placeholder="請輸入身分證字號" id="input1" onkeydown="checkEnter(event)" style="display:inline;width: 120px;">
+        <button style="margin-top:10px;width:50px;margin-left:500px; height: 25px; border-width:2px;border: double;">查欠</button>
+        <button  style="width:50px;display:inline; height: 25px;border-width:2px;border: double;">風險</button>
+        <button  style="width:50px;display:inline; height: 25px;border-width:2px;font-size: 15px;border: double;">VIP</button>
+        <button  style="width:50px;display:inline; height: 25px;border-width:2px;border: double;">伴銷</button>
+        <button  style="width:100px;display:inline; height: 25px;border-width:2px;border: double;">互動紀錄</button>
+        <a href="">🔍燈號說明</a>
+	</div>
+    <div class="form-group">
+        <label for="input2" style="display: inline-block;margin-left: 200px;">代辦人證號:</label>
+        <input type="text" placeholder="請輸入身分證字號" id="input2" style="display: inline-block;width: 120px;">
+        <div style="display:inline-block; margin-left:600px;"><marquee style="display:inline-block; width:500px;color:rgb(6, 100, 207);font-family:'Courier New', Courier, monospace;font-weight:700;;">1140415梯次 Training Team訓練專用，請勿外流</marquee></div>
+    </div>
+    <div class="form-group">
+        <button id="nextPageButton" style="background-color: rgb(245, 245, 190); margin-left: 200px;"onclick="goToNextPage()" >客戶設備及信用查核</button>
+        <button style="background-color: rgb(192, 248, 255); "onclick="clearForm()" >清除</button>
+    </div>
+    <div style="margin-top: 5px;">
+        <button onclick="goHome()" style="background-color: rgb(242, 194, 89); border: none; padding: 5px 10px; width: 150px;">首頁</button>
+    </div>
+ <script>
+   function goToNextPage() {
+    var userInput = document.getElementById("input1").value;
+    let valid = false;
+    let targetUrl = '';
+
+    if (userInput === "A234567890") {
+        targetUrl = 'sim2credit.html';
+        valid = true;
+    } else if (userInput === "A123456789") {
+        targetUrl = 'sim3credit.html';
+        valid = true;
+    } else if (userInput === "A223456789") {
+        targetUrl = 'sim4credit.html';
+        valid = true;
+    } else if (userInput === "A123345678") {
+        targetUrl = 'sim5credit.html';
+        valid = true;
+    }
+
+    if (valid) {
+        window.open(targetUrl);
+
+        // 新增按鈕區塊
+        const homeButtonDiv = document.querySelector('div[style*="margin-top: 5px;"]');
+
+        // 檢查是否已經加入新按鈕
+        if (!document.getElementById('newFeatureButton')) {
+            const newButton = document.createElement('button');
+            newButton.innerText = "新功能";
+            newButton.id = "newFeatureButton";
+            newButton.style.backgroundColor = "rgb(150, 200, 250)";
+            newButton.style.border = "none";
+            newButton.style.padding = "5px 10px";
+            newButton.style.width = "150px";
+            newButton.style.marginLeft = "10px";
+            newButton.onclick = function () {
+                alert("這是新按鈕的功能！");
+                // 或跳轉其他頁面，如：window.open('newfeature.html');
+            };
+            homeButtonDiv.appendChild(newButton);
+        }
+
+    } else {
+        alert("證號輸入錯誤，請重新輸入");
+    }
+}
+
+    
+    function goHome() {
+        // 回到預設頁面
+        parent.document.getElementById('left-box').src = 'left.html';
+        parent.document.getElementById('right-box').src = 'right.html';
+    }
+
+    function clearForm() {
+        document.getElementById('input1').value = '';
+        document.getElementById('input2').value = '';
+    }
+
+    // 獲取下一頁按鈕元素
+const nextPageButton = document.getElementById('nextPageButton');
+
+// 監聽鍵盤按鍵事件
+document.addEventListener('keydown', function(event) {
+  // 檢查是否按下的是 Enter 鍵
+  if (event.key === 'Enter') {
+    nextPageButton.click(); // 模擬點擊「下一頁」按鈕
+  }
+});
+
+</script>
+</body>
+</html>
