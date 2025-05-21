@@ -56,8 +56,8 @@
     <div style="display:inline; margin-top:500px;margin-left: 200px;">
         <label for="input1" style="display:inline; ">設備或證號:</label>
         <input type="text" placeholder="請輸入身分證字號" id="input1" onkeydown="checkEnter(event)" style="display:inline;width: 120px;">
-        <button style="margin-top:10px;width:50px;margin-left:500px; height: 25px; border-width:2px;border: double;">查欠</button>
-        <button  style="width:50px;display:inline; height: 25px;border-width:2px;border: double;">風險</button>
+        <button id="billButton" style="margin-top:10px;width:50px;margin-left:500px; height: 25px; border-width:2px;border: double;">查欠</button>
+        <button id="riskButton" style="width:50px;display:inline; height: 25px;border-width:2px;border: double;">風險</button>
         <button  style="width:50px;display:inline; height: 25px;border-width:2px;font-size: 15px;border: double;">VIP</button>
         <button  style="width:50px;display:inline; height: 25px;border-width:2px;border: double;">伴銷</button>
         <button  style="width:100px;display:inline; height: 25px;border-width:2px;border: double;">互動紀錄</button>
@@ -72,24 +72,233 @@
         <button id="nextPageButton" style="background-color: rgb(245, 245, 190); margin-left: 200px;"onclick="goToNextPage()" >客戶設備及信用查核</button>
         <button style="background-color: rgb(192, 248, 255); "onclick="clearForm()" >清除</button>
     </div>
-
+    <div style="margin-top: 5px;">
+        <button onclick="goHome()" style="background-color: rgb(242, 194, 89); border: none; padding: 5px 10px; width: 150px;">首頁</button>
+    </div>
  <script>
-    function goToNextPage() {
-        var userInput = document.getElementById("input1").value;
-        if (userInput === "A234567890"){ //女情境2
-        window.open('sim2credit.html');  // 跳轉到新的頁面
-    }   else if (userInput === "A123456789"){  //男情境3
-        window.open('sim3credit.html');  // 跳轉到新的頁面
-    }   else if (userInput === "A223456789"){  //女情境4
-        window.open('sim4credit.html');  // 跳轉到新的頁面
-    }   else if (userInput === "A123345678"){  //男情境5
-        window.open('sim5credit.html');  // 跳轉到新的頁面
+function goToNextPage() {
+    const userInput = document.getElementById("input1").value;
+    const pageMap = {
+    "A234567890": {
+        creditPage: "sim2credit.html",
+        riskLink: "sim2risk.html",
+        billLink: "sim2bill.html"
+    },
+    "A123456789": {
+        creditPage: "sim3credit.html",
+        riskLink: "sim3risk.html",
+        billLink: "sim3bill.html"
+    },
+    "A223456789": {
+        creditPage: "sim4credit.html",
+        riskLink: "sim4risk.html",
+        billLink: "sim4bill.html"
+    },
+    "A123345678": {
+        creditPage: "sim5credit.html",
+        riskLink: "sim5risk.html",
+        billLink: "sim5bill.html"
     }
-         else {
+};
+    const pageInfo = pageMap[userInput];
+    if (!pageInfo) {
         alert("證號輸入錯誤，請重新輸入");
+        return;
+    }
+
+    // 跳轉框架頁面
+    const leftBox = parent.document.getElementById('left-box');
+    const rightBox = parent.document.getElementById('right-box');
+    leftBox.style.display = 'none';
+    rightBox.style.width = '100%';
+    rightBox.src = pageInfo.creditPage;
+
+    // 動態產生按鈕
+    const homeButtonDiv = document.querySelector('div[style*="margin-top: 5px;"]');
+
+    const newButton = document.createElement('button');
+    newButton.style.backgroundColor = "rgb(193, 193, 193)";
+    newButton.style.border = "none";
+    newButton.style.padding = "5px 10px";
+    newButton.style.marginLeft = "1px";
+    newButton.style.marginTop = "5px";
+    newButton.style.position = "relative";
+    newButton.style.fontSize = "14px";
+    newButton.style.width = "150px";
+    newButton.innerHTML = `${userInput} `;
+
+    const closeIcon = document.createElement('span');
+    closeIcon.innerHTML = " ❌";
+    closeIcon.style.cursor = "pointer";
+    closeIcon.style.marginLeft = "15px";
+    closeIcon.style.color = "darkred";
+    closeIcon.style.fontWeight = "bold";
+
+    closeIcon.onclick = function (e) {
+        e.stopPropagation();
+        newButton.remove();
+    };
+
+    newButton.onclick = function () {
+        parent.document.getElementById('right-box').src = pageInfo.creditPage;
+        leftBox.style.display = 'none';
+        rightBox.style.width = '100%';
+
+         const allButtons = document.querySelectorAll('div[style*="margin-top: 5px;"] button');
+        allButtons.forEach(btn => {
+            btn.style.backgroundColor = "rgb(193, 193, 193)";
+    });
+
+    // 設定當前被點擊按鈕為黃色
+        newButton.style.backgroundColor = "rgb(242, 194, 89)";
+
+        setBillButtonAction(pageInfo);
+    };
+
+
+    newButton.appendChild(closeIcon);
+    homeButtonDiv.appendChild(newButton);
+
+    // 🔴 變更風險按鈕為紅色並加入超連結
+    const riskButton = document.getElementById("riskButton");
+    riskButton.style.backgroundColor = "green";
+    riskButton.style.color = "black";
+    riskButton.style.fontWeight = "bold";
+
+    // 設定風險頁面點擊行為（載入至右框架）
+     riskButton.onclick = function () {
+    // 找到 right-box 裡的 contentWindow（即 sim2credit.html）
+    const rightBox = parent.document.getElementById('right-box');
+    const rightBoxWindow = rightBox.contentWindow;
+
+
+    // 再從 sim2credit.html 裡去找 bottom-frame
+    const top2Frame = rightBoxWindow.document.getElementById('top2-frame');
+
+    const top2 =rightBoxWindow.document.getElementById("top2-frame");
+    if (top2) top2.style.height = "70%"; 
+    const mid = rightBoxWindow.document.getElementById("mid-frame");
+    if (mid) mid.style.height = "5%"; 
+
+    rightBoxWindow.document.getElementById("mid-frame").src = "";
+
+    if (top2Frame) {
+        top2Frame.src = pageInfo.riskLink;
+    } else {
+        alert("找不到 bottom-frame，請確認頁面是否正確載入 sim2credit.html");
+    }
+};
+
+    const billButton = document.getElementById("billButton");
+    billButton.style.backgroundColor = "red";
+    billButton.style.color = "black";
+    billButton.style.fontWeight = "bold";
+
+    // 設定風險頁面點擊行為（載入至右框架）
+    billButton.onclick = function () {
+    // 找到 right-box 裡的 contentWindow（即 sim2credit.html）
+    const rightBox = parent.document.getElementById('right-box');
+    const rightBoxWindow = rightBox.contentWindow;
+
+    // 再從 sim2credit.html 裡去找 bottom-frame
+    const top2Frame = rightBoxWindow.document.getElementById('top2-frame');
+
+    const top2 =rightBoxWindow.document.getElementById("top2-frame");
+    if (top2) top2.style.height = "70%"; 
+    const mid = rightBoxWindow.document.getElementById("mid-frame");
+    if (mid) mid.style.height = "5%"; 
+
+    rightBoxWindow.document.getElementById("mid-frame").src = "";
+
+    if (top2Frame) {
+        top2Frame.src = pageInfo.billLink;
+    } else {
+        alert("找不到 bottom-frame，請確認頁面是否正確載入 sim2credit.html");
+    }
+};
+    setBillButtonAction(pageInfo);
+
+    const homeButton = document.querySelector('button[onclick="goHome()"]');
+if (homeButton) {
+    homeButton.style.backgroundColor = "rgb(193, 193, 193)";
+}
+
+// 清除其他按鈕的選取狀態
+const allButtons = document.querySelectorAll('div[style*="margin-top: 5px;"] button');
+allButtons.forEach(btn => {
+    btn.style.backgroundColor = "rgb(193, 193, 193)";
+});
+
+// 設定新按鈕為選取狀態
+newButton.style.backgroundColor = "rgb(242, 194, 89)";
+
+}
+
+function setBillButtonAction(pageInfo) {
+    const billButton = document.getElementById("billButton");
+    const riskButton = document.getElementById("riskButton");
+
+    billButton.style.backgroundColor = "red";
+    billButton.style.color = "black";
+    billButton.style.fontWeight = "bold";
+
+    riskButton.style.backgroundColor = "green";
+    riskButton.style.color = "black";
+    riskButton.style.fontWeight = "bold";
+
+    billButton.onclick = function () {
+        const rightBox = parent.document.getElementById('right-box');
+        const rightBoxWindow = rightBox.contentWindow;
+
+        const top2 = rightBoxWindow.document.getElementById("top2-frame");
+        if (top2) top2.style.height = "70%"; 
+
+        const mid = rightBoxWindow.document.getElementById("mid-frame");
+        if (mid) mid.style.height = "5%"; 
+
+        if (mid) mid.src = "";
+
+        if (top2) {
+            top2.src = pageInfo.billLink;
+        } else {
+            alert("找不到 top2-frame，請確認頁面是否正確載入");
+        }
+    };
+}
+
+    
+function goHome() {
+    const leftBox = parent.document.getElementById('left-box');
+    const rightBox = parent.document.getElementById('right-box');
+
+    leftBox.style.display = 'block';
+    leftBox.style.width = '10%';
+
+    rightBox.style.width = '90%';
+    rightBox.src = 'right.html';
+    leftBox.src = 'left.html';
+
+    const billButton = document.getElementById("billButton");
+    billButton.style.backgroundColor = "white";
+    billButton.style.color = "black";
+    billButton.style.fontWeight = "normal";
+
+    const riskButton = document.getElementById("riskButton");
+    riskButton.style.backgroundColor = "white";
+    riskButton.style.color = "black";
+    riskButton.style.fontWeight = "normal";
+
+     const allButtons = document.querySelectorAll('div[style*="margin-top: 5px;"] button');
+    allButtons.forEach(btn => {
+        btn.style.backgroundColor = "rgb(193, 193, 193)";
+    });
+
+    // 將首頁按鈕設為黃色
+    const homeButton = document.querySelector('button[onclick="goHome()"]');
+    if (homeButton) {
+        homeButton.style.backgroundColor = "rgb(242, 194, 89)";
     }
 }
-    
 
     function clearForm() {
         document.getElementById('input1').value = '';
@@ -108,6 +317,5 @@ document.addEventListener('keydown', function(event) {
 });
 
 </script>
-
 </body>
 </html>
