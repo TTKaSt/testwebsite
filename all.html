@@ -181,6 +181,9 @@ function goToNextPage() {
     if (mid) mid.style.height = "5%"; 
 
     rightBoxWindow.document.getElementById("mid-frame").src = "";
+	     
+    const bottom = rightBoxWindow.document.getElementById("bottom-frame");
+    if (bottom) bottom.src= "";
 
     if (top2Frame) {
         top2Frame.src = pageInfo.riskLink;
@@ -257,6 +260,9 @@ function setBillButtonAction(pageInfo) {
         if (mid) mid.style.height = "5%"; 
 
         if (mid) mid.src = "";
+
+	const bottom = rightBoxWindow.document.getElementById("bottom-frame");
+    	if (bottom) bottom.src= "";
 
         if (top2) {
             top2.src = pageInfo.billLink;
